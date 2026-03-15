@@ -1,0 +1,6 @@
+model_checkpoint_path: "ChannelGAN_model_step_748999.ckpt"
+all_model_checkpoint_paths: "ChannelGAN_model_step_743999.ckpt"
+all_model_checkpoint_paths: "ChannelGAN_model_step_745999.ckpt"
+all_model_checkpoint_paths: "ChannelGAN_model_step_746999.ckpt"
+all_model_checkpoint_paths: "ChannelGAN_model_step_747999.ckpt"
+all_model_checkpoint_paths: "ChannelGAN_model_step_748999.ckpt"
