@@ -26,3 +26,4 @@ The project is configured for Windows 10/11 with an NVIDIA RTX 4050 GPU for hard
 4. **Install all required packages via requirements.txt:**
    ```bash
    pip install -r requirements.txt
+   

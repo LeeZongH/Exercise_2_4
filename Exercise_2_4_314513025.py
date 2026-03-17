@@ -102,15 +102,12 @@ def generate_real_samples_with_labels_Rayleigh(h_dataset, number=100):
                                1 - 3j, 1 - 1j, 1 + 1j, 1 + 3j, 3 - 3j, 3 - 1j, 3 + 1j, 3 + 3j
                                ], dtype=np.complex64)
 
-    # 1. 隨機選擇通道與符號
     h = np.random.choice(h_dataset, size=number)
     x = np.random.choice(mean_set_QAM, size=number)
 
-    # 【重要修正 A】: 確保通道功率歸一化 (Normalization)
-    # 如果 dataset 的 h 能量太小，會導致 y 分佈縮縮在原點
+    # norm h to have unit power
     h = h / np.sqrt(np.mean(np.abs(h_dataset)**2))
 
-    # 2. 模擬接收訊號 y = hx + n
     noise_variance = 0.03
     noise = (np.random.normal(scale=np.sqrt(noise_variance), size=number) + 
              1j * np.random.normal(scale=np.sqrt(noise_variance), size=number))
@@ -118,9 +115,6 @@ def generate_real_samples_with_labels_Rayleigh(h_dataset, number=100):
     y = h * x + noise
     received_data = np.column_stack((np.real(y), np.imag(y)))
 
-    # 3. 構造 Conditioning 向量
-    # 注意：繪圖程式碼中使用了 "/ 3"，為了保持訓練與測試的一致性，這裡必須維持 / 3
-    # 但我們可以確保傳進去的 h 是經過功率歸一化的
     conditioning = np.column_stack((
         np.real(x),
         np.imag(x),
@@ -128,7 +122,7 @@ def generate_real_samples_with_labels_Rayleigh(h_dataset, number=100):
         np.imag(h)
     ))
     
-    # 這裡的除以 3.0 是為了將 16-QAM 的座標 (最大值 3) 縮放到約 [-1, 1] 之間
+    # Normalize the conditioning vector to keep values in a reasonable range
     conditioning = conditioning / 3.0
 
     return received_data, conditioning
