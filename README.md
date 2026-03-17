@@ -11,8 +11,18 @@ This project implements a **Conditional Generative Adversarial Network (CGAN)** 
 
 ## Environment Setup (Windows/RTX 4050)
 The project is configured for Windows 10/11 with an NVIDIA RTX 4050 GPU for hardware acceleration:
-1. **Virtual Environment**: `conda create -n cg_env python=3.9`
-2. **CUDA Support**: `conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0`
-3. **Required Libraries**:
+1. **Create the virtual environment with the specific Python version:**
+    ```bash
+    conda create -n tensorflow python=3.9.19 -y
+
+2. **Activate the environment:**
+    ```bash
+    conda activate tensorflow
+
+3. **Install CUDA Toolkit via Conda:**
+    ```bash
+    conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0
+
+4. **Install all required packages via requirements.txt:**
    ```bash
-   pip install tensorflow==2.10.1 numpy==1.24.4 scipy==1.13.1 matplotlib==3.9.1 protobuf==3.19.6
+   pip install -r requirements.txt
